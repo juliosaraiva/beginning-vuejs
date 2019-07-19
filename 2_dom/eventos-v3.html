@@ -7,6 +7,7 @@
         <span v-on:mousemove.stop>PARAR AQUI!</span>
     </p>
     <a v-on:click href="https://www.google.com.br" target="_blank">Google</a>
+    <input type="text" v-on:keyup.enter.alt="showAlert">
 </div>
 <script>
     new Vue({
@@ -25,6 +26,9 @@
                 console.log(event)
                 this.x = event.clientX
                 this.y = event.clientY
+            },
+            showAlert() {
+                alert("Alerta Vermelho!")
             },
             // parar(event) {
             //     event.stopPropagation()

@@ -40,7 +40,7 @@ Para acessarmos um atributo da própria instância diretamente, podemos fazer re
 }
 ```
 
-### Diretivas
+## Diretivas
 Diretivas é a nomenclatura que o VueJS usa para propriedades personalizadas em tags HTML.
 
 #### Diretiva v-bind
@@ -64,3 +64,11 @@ No exemplo acima o atributo será `href`, e a expressão é o que está entre as
 
 #### Diretiva v-once
 O `v-once` é muito útil quando temos uma tag que não desejamos que seja monitorada pelo view, sendo assim seu conteúdo será renderizado uma única vez.
+
+### Eventos
+
+#### Diretiva v-on
+A diretiva `v-on` é usada para escutar eventos na DOM e disparar uma ação quando este evento for disparado.
+
+
+> Os modificadores de evento, podem alterar o comportamento padrão de determinados eventos que ocorrem na DOM. É muito útil em eventos de interação com o mouse.
