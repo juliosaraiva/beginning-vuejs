@@ -131,6 +131,18 @@ Como `v-if` é uma diretiva, deve ser anexado a um único elemento. Nesse caso, 
 
 ### Renderização com v-show
 
-Diferente do `v-if`, a diretiva `v-show` irá renderizar o bloco indenpendente de sua condição, a diferença aqui é que para exibir e ocultar o bloco ele adicionará o estilo css `display: none` para ocultar os elementos se a condição não for atendida.
+Diferente do `v-if`, a diretiva `v-show` sempre irá renderizar o elemento indenpendente de sua condição, Para ocultar um elemento caso a condição de `v-show` não seja atendida, o que o Vue faz é simplesmente alterar a propriedade CSS `display` do elemento.
+
+> `v-show` não suporta a `<template>` tag do HTML, assim como também não possui `v-else`.
+
+#### `v-if` VS `v-show`
+
+`v-if` é a renderização condicional “real”, pois garante que eventos e componentes filhos dentro do bloco condicional sejam devidamente destruídos e recriados durante a alternância.
+
+`v-if` também é preguiçoso: se a condição for false na renderização inicial, nada será feito - o bloco condicional não será processado até que a condição se torne true pela primeira vez.
+
+Em comparação, `v-show` é mais simples - o elemento sempre será renderizado independentemente da condição inicial, com alternância baseada em CSS.
+
+De modo geral, `v-if` tem custo maior durante alternâncias de visibilidade, enquanto `v-show` tem custo maior na renderização inicial. Então prefira `v-show` se precisar alternar a visibilidade de algo com muita frequência; e prefira `v-if` se a condição não tem tanta probabilidade de se modificar durante a execução.
 
 ## Renderização de listas
