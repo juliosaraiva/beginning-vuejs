@@ -96,7 +96,9 @@ Permite fazer chamadas síncronas e assíncronas. Essa propriedade fica monitora
 
 ## Renderização condicional
 
-É a técnica usada para renderizar na DOM somente um bloco que atende uma determinada condição. É usado com a diretiva `v-if`.
+### Renderização com v-if
+
+A diretiva `v-if` é usada para renderizar condicionalmente um elemento. O bloco só será renderizado se a condição for atendida.
 
 ```javascript
 <h1 v-if="top">O Vue é mesmo incrível</h1>
@@ -104,12 +106,31 @@ Permite fazer chamadas síncronas e assíncronas. Essa propriedade fica monitora
 
 Neste exemplo, este bloco só será renderizado, se o valor de top retornar `true`.
 
-Também é possível usar `v-else` se a condição do `v-if` não for atendida. o `v-else` deve vir imediatamente logo após `v-if`.
+Também é possível usar `v-else` se a condição do `v-if` não for atendida. o `v-else` deve vir imediatamente logo após `v-if`, caso contrário ele não será reconhecido.
 
 ```javascript
 <h1>Qual o melhor framework?</h1>
 <p v-if="theBest">Vue, é claro</p>
 <p v-else>React</p>
 ```
+
+Para que seja possível atender a mais de uma condição, também temos a diretiva `v-else-if` onde podemos definir uma nova condição, se a condição definida em `v-if` não for atendida. Vamos ver um exemplo:
+
+```javascript
+<p v-if="idade < 12">Criança</p>
+<p v-else-if="idade < 18">Adolescente</p>
+<p v-else-if="idade > 60">Idoso</p>
+<p v-else>Adulto</p>
+```
+
+Assim como o `v-else`, a direitiva `v-else-if` deve vir imediatamente logo após um `v-if`.
+
+### grupos condicionais
+
+Como `v-if` é uma diretiva, deve ser anexado a um único elemento. Nesse caso, para renderizar mais de um elemento, devemos usar a `<template>` tag do HTML, que vai envolver todos os elementos que estiver dentro dessa tag, e os exibirá apenas se a condição for atendida. A tag `template` em si, não será exiba após a renderização dos elementos que ela contém.
+
+### Renderização com v-show
+
+Diferente do `v-if`, a diretiva `v-show` irá renderizar o bloco indenpendente de sua condição, a diferença aqui é que para exibir e ocultar o bloco ele adicionará o estilo css `display: none` para ocultar os elementos se a condição não for atendida.
 
 ## Renderização de listas

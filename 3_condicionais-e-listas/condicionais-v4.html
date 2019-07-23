@@ -10,19 +10,22 @@
   <p v-else>Nenhum ususário logado</p>
   <button @click="logado = !logado">{{ logado ? "Sair" : "Entrar" }}</button>
   <input type="checkbox" v-model="anonimo" />
+  <hr />
+  <footer v-show="logado">
+    Desenvolvido pra você!
+  </footer>
 
-  <h1>Qual o melhor framework?</h1>
-  <h2>
-    <p v-if="theBest">Vue é claro</p>
-    <p v-else>React</p>
-  </h2>
-  <input type="checkbox" v-model="theBest" />
+  <p v-if="idade < 12">Criança</p>
+  <p v-else-if="idade < 18">Adolescente</p>
+  <p v-else-if="idade > 60">Idoso</p>
+  <p v-else>Adulto</p>
 </div>
 
 <script>
   new Vue({
     el: "#app",
     data: {
+      idade: 100,
       nome: "Maria",
       logado: false,
       anonimo: false,
