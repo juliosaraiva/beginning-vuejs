@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Exercício de Instance Vue</title>
+</head>
+<body>
+    <div id="app1">
+        {{ instrumento }}
+    </div>
+    <div id="app2">
+        {{ instrumento }}
+    </div>
+    <script>
+        // Crie uma tag com o id app e inicie uma instance vue.
+        const vm = new Vue({
+            el: "#app",
+        })
+
+        // Faça o HTML funcionar com Vue
+        const vm1 = new Vue({
+            el: "#app1",
+            data: {
+                instrumento: "Violao"
+            }
+        })
+
+        const vm2 = new Vue({
+            el: "#app2",
+            data: {
+                instrumento: "Guitarra"
+            }
+        })
+    </script>
+</body>
+</html>
