@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Exercício de v-bind</title>
+    <style>
+        * {
+            font-family: Helvetica, Arial, sans-serif;
+            font-weight: normal;
+            font-size: 1em;
+            color: #000;
+        }
+
+        .verde {
+            color: green;
+        }
+
+        .vermelho {
+            color: red;
+        }
+        div#stock ul {
+            display: flex;
+            list-style: none;
+        }
+        div#stock ul li a {
+            width: 90px;
+            height: 20px;
+            padding: 5px;
+            margin: 5px;
+            border: 1px solid tomato;
+            border-radius: 20px;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            color: #af8902
+        }
+        div#stock ul li a:hover {
+            background: rgba(243, 233, 140, 0.5)
+        }
+    </style>
+</head>
+
+<body>
+    <div id="stock">
+        <ul>
+            <li><a @click.prevent="getApi" href="https://cloud.iexapis.com/stable/stock/aapl/quote/?token=pk_adcd85923cdc448abd4e01dde11227fd">Apple</a></li>
+            <li><a @click.prevent="getApi" href="https://cloud.iexapis.com/stable/stock/googl/quote/?token=pk_adcd85923cdc448abd4e01dde11227fd">Google</a></li>
+            <li><a @click.prevent="getApi" href="https://cloud.iexapis.com/stable/stock/amzn/quote/?token=pk_adcd85923cdc448abd4e01dde11227fd">Amazon</a></li>
+            <li><a @click.prevent="getApi" href="https://cloud.iexapis.com/stable/stock/ebay/quote/?token=pk_adcd85923cdc448abd4e01dde11227fd">Ebay</a></li>
+            <li><a @click.prevent="getApi" href="https://cloud.iexapis.com/stable/stock/pypl/quote/?token=pk_adcd85923cdc448abd4e01dde11227fd">Paypal</a></li>
+            <li><a @click.prevent="getApi" href="https://cloud.iexapis.com/stable/stock/fb/quote/?token=pk_adcd85923cdc448abd4e01dde11227fd">Facebook</a></li>
+        </ul>
+        <p>
+            Empresa: {{ api.companyName }}
+        </p>
+        <p>
+            Último valor: {{ api.latestPrice }}
+        </p>
+        <p>
+            Valor de mercado: {{ api.marketCap }}
+        </p>
+
+    </div>
+    <!--
+    https://cloud.iexapis.com/stable/stock/aapl/quote/?token=pk_adcd85923cdc448abd4e01dde11227fd
+    https://cloud.iexapis.com/stable/stock/googl/quote/?token=pk_adcd85923cdc448abd4e01dde11227fd
+    -->
+    <script src="main.js"></script>
+</body>
+
+</html>

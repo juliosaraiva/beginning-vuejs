@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Diretiva v-on</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{ contador }}</p>
+        <button @click.prevent="contador++">Add</button>
+        <input type="text" @keyup.key="handleClick">
+    </div>
+    <script src='main.js'></script>
+</body>
+</html>
