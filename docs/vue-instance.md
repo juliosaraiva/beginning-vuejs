@@ -28,3 +28,5 @@ console.log(vm.data);
 ```
 
 No exemplo acima, podemos acessar o valor da propriedade definida em data diretamente na raiz da vue instance usando `vm.mensagem` ou fazendo referência direta através de `vm.$data.mensagem`.
+
+Devemos sempre definir um estado em `data`, mesmo que não tenhamos um valor (podendo ser definido uma string vazia), isso serve para que o vue crie os getters e setters da propriedade para que o conceito de reatividade seja aplicado durante a criação da instance. Se caso definirmos a propriedade diretamente no objeto, ele não irá possui o recurso de reatividade.
