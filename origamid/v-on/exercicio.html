@@ -56,13 +56,13 @@
             <li><a @click.prevent="getApi" href="https://cloud.iexapis.com/stable/stock/fb/quote/?token=pk_adcd85923cdc448abd4e01dde11227fd">Facebook</a></li>
         </ul>
         <p>
-            Empresa: {{ api.companyName }}
+            Empresa: {{ company }}
         </p>
         <p>
-            Último valor: {{ api.latestPrice }}
+            Último valor: {{ lastValue }}
         </p>
         <p>
-            Valor de mercado: {{ api.marketCap }}
+            Valor de mercado: {{ marketCap }}
         </p>
 
     </div>

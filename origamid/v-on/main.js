@@ -1,19 +1,18 @@
-// const vue = new Vue({
-//   el: "#app",
-//   data: {
-//     contador: 0
-//   },
-//   methods: {
-//     handleClick() {
-//       console.log(event);
-//     }
-//   }
-// });
-
 const stock = new Vue({
   el: "#stock",
   data: {
     api: {}
+  },
+  computed: {
+    company() {
+      return this.api.companyName;
+    },
+    lastValue() {
+      return this.api.latestPrice;
+    },
+    marketCap() {
+      return this.api.marketCap;
+    }
   },
   methods: {
     getApi(event) {

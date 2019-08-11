@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>computed and watch property</title>
+    <style>
+        div#app ul {
+            list-style: none;
+        }
+        div#app ul li {
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" placeholder="cep" maxlenght="8" v-model="cep">
+        <h1>{{ cep }}</h1>
+        <ul>
+            <li v-for="(valor, chave) in endereco"><b>{{ chave }}</b>: {{ valor }}</li>
+        </ul>
+    </div>
+    <script src='main.js'></script>
+</body>
+</html>
