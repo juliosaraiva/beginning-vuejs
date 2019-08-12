@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Github: Profile</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Helvetica;
+        }
+        div#app #avatar {
+            width: 150px;
+            height: 150px;
+            border: 1px solid #999;
+            border-radius: 50%;
+            margin-left: 40px;
+        }
+        div#app ul {
+            list-style: none;
+        }
+        div#app ul li {
+            padding: 5px;
+        }
+        div#app ul li b {
+            font-weight: bold;
+        }
+        div#app button {
+            width: 50px;
+            height: 30px;
+            border: 1px solid tomato;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <img id="avatar" :src="github.avatar_url" alt="Avatar">
+        <ul>
+            <li v-for="(value, key) in github"><b>{{ key }}</b>: {{ value }}</li>
+        </ul>
+        <button @click="count">+{{ contador }}</button>
+    </div>
+    <script src='app.js'></script>
+</body>
+</html>
