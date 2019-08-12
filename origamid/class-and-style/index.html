@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Class and Styles</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <ul :style="menu">
+                <li :style="lista"><a :style="decoration" href="#">Home</a></li>
+                <li :style="lista"><a :style="decoration" href="#">About</a></li>
+                <li :style="lista"><a :style="decoration" href="#">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                menu: {
+                    display: "flex",
+                    listStyle: "none",
+                    justifyContent: "flex-end",
+                    marginRight: "80px"
+                },
+                lista: {
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "100px",
+                    height: "30px",
+                    margin: "5px",
+                    border: "1px solid tomato",
+                    borderRadius: "20px"
+                },
+                decoration: {
+                    fontFamily: "Helvetica",
+                    color: "tomato",
+                    fontWeight: "bold",
+                    textDecoration: "none",
+                }
+            }
+        })
+    </script>
+</body>
+</html>
