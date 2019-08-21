@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Exercício de v-bind</title>
+    <style>
+        div#app img {
+            width: 150px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <select name="countries" id="countries" v-model="selectedCountry">
+            <option value="" disabled>Select Country</option>
+            <option v-for="country in countries" :value="country.name">{{ country.name }}</option>
+        </select>
+        <p>País Selecionado: {{ selectedCountry }}</p>
+        <img v-if="selectedCountry" :src="country.flag" alt="Flag">
+        <p>{{ country.capital }}</p>
+    </div>
+    <script src="main-exercicio.js"></script>
+</body>
+
+</html>

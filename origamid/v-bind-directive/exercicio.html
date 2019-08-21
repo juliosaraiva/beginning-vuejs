@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Exercício de v-bind</title>
+    <style>
+        * {
+            color: #000;
+        }
+        .verde {
+            color: green;
+        }
+
+        .vermelho {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p :class="apple.marketCap > google.marketCap ? 'verde': 'vermelho'">{{ apple.companyName }}: {{ apple.marketCap }}</p>
+        <p :class="google.marketCap > apple.marketCap ? 'verde' : 'vermelho'">{{ google.companyName }}: {{ google.marketCap }}</p>
+        <button @click="verifica">Verificar</button>
+    </div>
+    <!--
+    https://cloud.iexapis.com/stable/stock/aapl/quote/?token=pk_adcd85923cdc448abd4e01dde11227fd
+    https://cloud.iexapis.com/stable/stock/googl/quote/?token=pk_adcd85923cdc448abd4e01dde11227fd
+    -->
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                google: {},
+                apple: {},
+            },
+            methods: {
+                getApple() {
+                    fetch('https://cloud.iexapis.com/stable/stock/aapl/quote/?token=pk_adcd85923cdc448abd4e01dde11227fd')
+                        .then(resp => resp.json())
+                        .then(json => this.apple = json)
+               },
+                getGoogle() {
+                    fetch('https://cloud.iexapis.com/stable/stock/googl/quote/?token=pk_adcd85923cdc448abd4e01dde11227fd')
+                        .then(resp => resp.json())
+                        .then(json => this.google = json)
+               },
+                async verifica() {
+                   await this.getApple()
+                   await this.getGoogle() 
+                   if (this.apple.marketCap > this.google.marketCap) {
+                       this.maior = true
+                   } else {
+                       this.maior = false
+                   }
+               }
+            }
+        })
+    </script>
+</body>
+</html>

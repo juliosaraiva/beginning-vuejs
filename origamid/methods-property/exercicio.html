@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Methods Property</title>
+    <style>
+        #app {
+            font-family: Arial, Helvetica, sans-serif, Georgia;
+        }
+
+        div#app img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+        div#app .info {
+            display: flex;
+            flex-flow: column;
+            margin-left: 20px;
+        }
+
+        div#app .info button {
+            width: 80px;
+            height: 30px;
+            border: solid  
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="img">
+            <img v-bind:src="userInformation.avatar_url" alt="">
+        </div>
+        <div class="info">
+            <p>Login: {{ userInformation.login }}</p>
+            <p>Name: {{ userInformation.name }}</p>
+            <p>Company: {{ userInformation.company }}</p>
+            <p>Bio: {{ userInformation.bio }} </p>
+        </div>
+        <div class="usercheck">
+                <p>{{ user }}</p>
+                <input type="text" v-model="user" placeholder="username">
+                <button @click="getUser">Verificar</button>
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                user: "",
+                userInformation: {}
+            },
+            methods: {
+                getUser() {
+                    fetch(`https://api.github.com/users/${this.user}`)
+                        .then( response => response.json())
+                        .then(json =>{
+                            this.userInformation = json
+                        })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

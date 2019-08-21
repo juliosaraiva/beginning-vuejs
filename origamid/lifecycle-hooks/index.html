@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Lifecycle and Hooks</title>
+    <style>
+        div#app #avatar {
+            width: 150px;
+            height: 150px;
+            border: 1px solid #999;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <img v-if="github" id="avatar" :src="github.avatar_url" alt="Avatar">
+        <p>Username: {{ github.login }}</p>
+        <p>Name: {{ github.name }}</p>
+        <p>Company: {{ github.company }}</p>
+        <p>Bio: {{ github.bio }} </p>
+        <p>{{ followers }}</p>
+    </div>
+    <script src='main.js'></script>
+</body>
+</html>
