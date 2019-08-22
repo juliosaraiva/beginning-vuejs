@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Entendendo Props</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <p @click="valor++">{{valor}}</p>
+        <botao-contador :valor="valor" cor="Blue" tamanho="Pixixito"></botao-contador>
+    </div>
+
+
+    <script type="module">
+
+        const BotaoContador = {
+            name: "BotaoContador",
+            props: {
+                valor: Number,
+                cor: {
+                    type: String,
+                    required: true
+                },
+                tamanho: {
+                    type: String,
+                    default: "Grande"
+                }
+            },
+            template: `
+            <p>{{valor }} - {{ cor }} - {{ tamanho }}</p>
+            `
+        }
+
+        new Vue({
+            el: "#app",
+            data: {
+                valor: 0,
+            },
+            components: {
+                BotaoContador
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

@@ -36,10 +36,12 @@
         import MarketHoje from './components/MarketHoje.js';
 
         Vue.component("TempoHoje", TempoHoje);
-        Vue.component("MarketHoje", MarketHoje);
 
         new Vue({
             el: "#app",
+            components: {
+                MarketHoje
+            }
         })
     </script>
 </body>

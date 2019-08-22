@@ -1,0 +1,101 @@
+<!-- 
+  Crie um componente com um campo de input e um botão para enviar o valor.
+  Nesse campo de input será possível escrever o simbolo de empresas americanas
+
+  simbolos ex:
+  aapl -> Apple
+  goog -> Google
+  msft -> Microsoft
+  amzn -> Amazon
+  fb -> Facebook
+
+  Ao clicar no botão, faça um fetch com a API:
+https://cloud.iexapis.com/stable/stock/${SIMBOLO}/quote/?token=pk_adcd85923cdc448abd4e01dde11227fd
+
+  O resultado do fetch deverá ser mostrado em um componente filho do formulário.
+  Envia as informações utilizando prop
+ 
+  Mostre todas as informações do fetch utilizando um loop.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Entendendo Props</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        ul {
+            list-style-type: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <form-acoes>
+        </form-acoes>
+    </div>
+
+
+    <script type="module">
+
+
+        const ResultadoAcao = {
+            name: "ResultadoAcao",
+            props: {
+                value: {
+                    type: String,
+                    required: true
+                }
+            },
+            template: `
+            <ul>
+                <li>{{ value }}</li>
+            </ul>
+            `
+        }
+
+        const FormAcoes = {
+            name: "FormAcoes",
+            components: {
+                ResultadoAcao
+            },
+            template: `
+            <div>
+                <input v-model="empresa" type="text" />
+                <button @click="obterAcao">Consultar Ação</button>
+
+                <resultado-acao v-for="valor in acao" :value="valor"></resultado-acao>
+            </div>
+            `,
+            data() {
+                return {
+                    empresa: "",
+                    acao: {}
+                }
+            },
+            methods: {
+                obterAcao() {
+                    fetch(`https://cloud.iexapis.com/stable/stock/${this.empresa}/quote/?token=pk_adcd85923cdc448abd4e01dde11227fd`)
+                        .then(resp => resp.json())
+                        .then(r => this.acao = r)
+                }
+            }
+        }
+
+
+        new Vue({
+            el: "#app",
+            components: {
+                FormAcoes
+            }
+        })
+    </script>
+</body>
+
+</html>
