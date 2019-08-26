@@ -14,15 +14,13 @@
 </template>
 
 <script>
-import SobreEmpresa from "./components/SobreEmpresa.vue";
-import ServicosEmpresa from "./components/ServicosEmpresa.vue";
 import ContatoEmpresa from "./components/ContatoEmpresa.vue";
 
 export default {
   name: "app",
   components: {
-    SobreEmpresa,
-    ServicosEmpresa,
+    SobreEmpresa: () => import("./components/SobreEmpresa.vue"),
+    ServicosEmpresa: () => import("./components/ServicosEmpresa.vue"),
     ContatoEmpresa
   },
   data() {
