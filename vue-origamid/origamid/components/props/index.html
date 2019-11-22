@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Entendendo Props</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <lista-produtos :frutas="lista" titulo="SuperMarket"></lista-produtos>
+    </div>
+
+
+    <script type="module">
+
+        const ItemProduto = {
+            nome: "ItemProduto",
+            props: {
+                nomeFruta: String,
+                total: Number
+            },
+            template: `<li>Esse é o nome: {{ nomeFruta }} - Total: {{ total }}</li>`
+        }
+
+        const ListaProdutos = {
+            name: "ListaProdutos",
+            props: ["frutas", "titulo"],
+            components: {
+                ItemProduto
+            },
+            template: `
+            <div>
+                <h1>{{ titulo }}</h1>
+                <ul>
+                    <item-produto v-for="(fruta, index) in frutas" :nomeFruta="fruta" :total="index" :key="fruta"></item-produto>
+                    <li v-for="fruta in frutas">{{ fruta }}</li>
+                </ul>
+            </div>
+            `
+        }
+
+        new Vue({
+            el: "#app",
+            components: {
+                ListaProdutos
+            },
+            data: {
+                lista: ["Banana", "Abacate", "Cupu-açu"]
+            }
+        })
+    </script>
+</body>
+
+</html>

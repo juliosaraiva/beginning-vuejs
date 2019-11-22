@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <div :style="{ fontSize: postFontSize + 'rem'}">
+            <blog-post v-for="post in posts" :key="post.id" :post="post" v-model="text" @enlarge-text="enlargeAmount">
+            </blog-post>
+        </div>
+    </div>
+
+    <script>
+        Vue.component("blog-post", {
+            props: ["post", "enlarge-text", "value"],
+            template: `
+            <div class="blog-post">
+                <h3>{{ post.title }}</h3>
+                <button @click="$emit('enlarge-text', 0.1)">Aumentar Fonte</button>
+                <input  @input="$emit('input', $event.target.value)" />
+                <p>{{ value }}</p>
+                <div v-html="post.content"></div>
+            </div>
+            `
+        })
+
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                posts: [
+                    {
+                        id: 1,
+                        title: "Aprendendo sobre VueJS",
+                        content: "<p>Isso é o conteudo do Post</p>"
+                    }
+                ],
+                postFontSize: 1,
+                text: ""
+            },
+            methods: {
+                enlargeAmount(event) {
+                    this.postFontSize += event
+                },
+
+            }
+        })
+    </script>
+
+</body>
+
+</html>

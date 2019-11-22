@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eventos em componentes</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <meu-botao @origamid="mostrarMensagem"></meu-botao>
+        <p>{{ acao }}</p>
+    </div>
+
+    <script type="module">
+
+        const MeuBotao = {
+            name: "MeuBotao",
+            template: `<button @click="handleClick">Clique aqui</button>`,
+            methods: {
+                handleClick() {
+                    fetch('https://cloud.iexapis.com/stable/stock/aapl/quote/?token=pk_adcd85923cdc448abd4e01dde11227fd')
+                        .then(resp => resp.json())
+                        .then(json => {
+                            this.$emit("origamid", json)
+                        })
+                }
+            }
+        }
+
+        new Vue({
+            el: "#app",
+            components: {
+                MeuBotao
+            },
+            data: {
+                acao: ""
+            },
+            methods: {
+                mostrarMensagem(mensagem) {
+                    this.acao = mensagem
+                }
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
