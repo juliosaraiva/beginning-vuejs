@@ -1,8 +1,8 @@
 <template>
   <div>
-    <button @click="ativo = !ativo">Ativar</button>
-    <transition appear name="fade" enter-active-class="animation">
-      <h1>Serviços</h1>
+    <button @click="ativo = !ativo">Ativar Transiction</button>
+    <transition appear name="fade">
+      <h1>Transições no Vue</h1>
     </transition>
   </div>
 </template>
@@ -12,19 +12,20 @@ export default {
   data() {
     return {
       ativo: false
-    };
+    }
   }
-};
+
+}
 </script>
 
-
-
 <style>
-.fade-enter {
+/* .fade-enter-active, .fade-leave-active {
+  transition: 1.5s;
+} */
+.fade-enter, .fade-leave-to {
   opacity: 0;
 }
-
-.animation {
-  transition: opacity 2s;
+.fade-enter-active, .fade-leave-active {
+  transition: 5s;
 }
 </style>
