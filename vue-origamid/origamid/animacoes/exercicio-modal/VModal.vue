@@ -1,16 +1,16 @@
 <template>
   <div>
-    <button @click="modalActive = !modalActive">Cadastre-se</button>
-    <transition name="modal">
-      <div @click="outOfBox" class="modal-wraper" v-show="modalActive">
+    <button @click="modalAtivo = !modalAtivo">Cadastre-se</button>
+    <transition>
+      <div class="modal-wrapper" v-show="modalAtivo" @click="disableModal">
         <div class="modal">
-          <h1>Login</h1>
+          <h1>Cadastre-se</h1>
           <form>
-            <label for="email"></label>
-            <input type="email" name="email" placeholder="email" id="email" autofocus />
-            <label for="Password"></label>
-            <input type="password" name="password" placeholder="senha" id="password" />
-            <input type="submit" value="login" />
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" />
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" />
+            <input type="submit" value="Logar" @click.prevent />
           </form>
         </div>
       </div>
@@ -22,13 +22,13 @@
 export default {
   data() {
     return {
-      modalActive: false
+      modalAtivo: false
     };
   },
   methods: {
-    outOfBox({ target, currentTarget }) {
-      if (target === currentTarget) {
-        this.modalActive = false;
+    disableModal({ currentTarget, target }) {
+      if (currentTarget === target) {
+        this.modalAtivo = false;
       }
     }
   }
@@ -36,17 +36,24 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 * {
   box-sizing: border-box;
 }
 
-.modal-wraper {
+h1 {
+  margin: 0px 0px 20px 0px;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.modal-wrapper {
   position: fixed;
   width: 100vw;
   height: 100vh;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   background: rgba(0, 0, 0, 0.4);
   overflow-y: scroll;
 }
@@ -54,9 +61,9 @@ export default {
 .modal {
   background: #e5e5e5;
   padding: 20px;
-  border-radius: 4px;
   max-width: 400px;
-  margin: 120px auto 0 auto;
+  border-radius: 4px;
+  margin: 200px auto 0 auto;
   z-index: 10;
 }
 
@@ -65,39 +72,36 @@ label {
   margin-bottom: 5px;
 }
 
-input[type="submit"],
-button {
-  max-width: 200px;
-  padding: 0;
-  background: #84e;
-  color: #fff;
-  margin: 20px auto;
-  display: block;
-  text-transform: uppercase;
-}
-
-input[type="submit"] {
-  width: 100px;
-  height: 40px;
-}
-
 input,
 button {
   width: 100%;
   border: 2px solid rgba(0, 0, 0, 0.2);
-  text-indent: 2px;
   border-radius: 2px;
-  padding: 15px 10px;
-  outline-style: none;
+  padding: 12px 10px;
+  font-size: 1rem;
   margin-bottom: 20px;
 }
 
-body {
-  font-family: "Montserrat", sans-serif;
+input[type="submit"],
+button {
+  width: 200px;
+  background: #84e;
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  outline: none;
 }
 
-h1 {
-  margin: 0px 0px 20px 0px;
+input[type="submit"]:active,
+button:active {
+  color: #94e;
+}
+
+button {
+  margin: 20px auto;
+  display: block;
 }
 
 .modal-enter,
@@ -107,10 +111,10 @@ h1 {
 
 .modal-enter-active,
 .modal-leave-to {
-  transition: opacity 0.3s;
+  transition: 0.3s;
 }
 
-.modal-enter-to .modal {
+.modal {
   animation: slide 0.3s;
 }
 
@@ -123,7 +127,7 @@ h1 {
     transform: translate3d(0, -40px, 0);
   }
   to {
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0px, 0);
   }
 }
 </style>
